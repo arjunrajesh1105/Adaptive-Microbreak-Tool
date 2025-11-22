@@ -1,0 +1,82 @@
+{
+  "physical": [
+    {
+      "id": "stretch60",
+      "title": "60s Desk Stretches",
+      "duration": 60,
+      "type": "physical",
+      "description": "Simple neck and shoulder stretches you can do while seated.",
+      "video": ""
+    },
+    {
+      "id": "walk5",
+      "title": "5‑Min Quick Walk",
+      "duration": 300,
+      "type": "physical",
+      "description": "Step away for a brisk 5-minute walk to reset your posture and focus.",
+      "video": ""
+    }
+  ],
+  "mental": [
+    {
+      "id": "breath8",
+      "title": "8‑Min Mindful Breathing",
+      "duration": 480,
+      "type": "mental",
+      "description": "A guided 8-minute mindful breathing meditation.",
+      "video": "https://www.youtube.com/embed/l643vWJmciU"
+    },
+    {
+      "id": "breath5",
+      "title": "5‑Min Guided Breathing",
+      "duration": 300,
+      "type": "mental",
+      "description": "Short 5-minute breathing meditation to calm your mind.",
+      "video": "https://www.youtube.com/embed/p3QXqALDl5E"
+    },
+    {
+      "id": "breathSimple",
+      "title": "Simple Mindful Breathing",
+      "duration": 180,
+      "type": "mental",
+      "description": "Easy, minimal breathing exercise to reconnect with your breath.",
+      "video": "https://www.youtube.com/embed/wfDTp2GogaQ"
+    },
+    {
+      "id": "heartBreath",
+      "title": "Heart Breathing Exercise",
+      "duration": 240,
+      "type": "mental",
+      "description": "A calming heart‑centered breathing exercise for focus and self‑connection.",
+      "video": "https://www.youtube.com/embed/A9g513nF53Y"
+    },
+    {
+      "id": "box3",
+      "title": "3‑Min Box Breathing",
+      "duration": 180,
+      "type": "mental",
+      "description": "A quick 3‑minute box breathing exercise to reduce stress.",
+      "video": "https://www.youtube.com/embed/grfXR6FAsI8"
+    }
+  ],
+  "cognitive": [
+    {
+      "id": "puzzle2",
+      "title": "2‑Min Pattern Puzzle",
+      "duration": 120,
+      "type": "cognitive",
+      "description": "A short puzzle to refresh attention (no video).",
+      "video": ""
+    }
+  ],
+  "social": [
+    {
+      "id": "checkin1",
+      "title": "1‑Min Coworker Check‑In",
+      "duration": 60,
+      "type": "social",
+      "description": "Send a quick message or emoji to someone — just a moment of connection.",
+      "video": ""
+    }
+  ]
+}
