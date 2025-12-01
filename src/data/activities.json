@@ -5,8 +5,8 @@
       "title": "60s Desk Stretches",
       "duration": 60,
       "type": "physical",
-      "description": "Simple neck and shoulder stretches you can do while seated.",
-      "video": ""
+      "description": "Simple neck and shoulder stretches you can do while seated. (Feel free to watch video if you are unsure of some stretches.)",
+      "video": "https://www.youtube.com/embed/Sy_lLu7bDPk"
     },
     {
       "id": "walk5",
@@ -15,6 +15,30 @@
       "type": "physical",
       "description": "Step away for a brisk 5-minute walk to reset your posture and focus.",
       "video": ""
+    },
+    {
+      "id": "deskYoga10",
+      "title": "20‑Min Desk Yoga",
+      "duration": 1200,
+      "type": "physical",
+      "description": "A quick 20-minute desk yoga session to stretch and rejuvenate your body.",
+      "video": "https://www.youtube.com/embed/v7AYKMP6rOE"
+    },
+    {
+      "id": "posture3",
+      "title": "3‑Min Posture Check",
+      "duration": 180,
+      "type": "physical",
+      "description": "A brief posture check and adjustment routine to improve alignment and reduce tension.",
+      "video": "https://www.youtube.com/embed/JO-5PYAQG2E"
+    },
+    {
+      "id": "eyeRelax2",
+      "title": "2‑Min Eye Relaxation",
+      "duration": 120,
+      "type": "physical",
+      "description": "A simple eye relaxation exercise to reduce eye strain from screen time.",
+      "video": "https://www.youtube.com/embed/RoIYAoAalmI"
     }
   ],
   "mental": [
@@ -61,12 +85,44 @@
   ],
   "cognitive": [
     {
-      "id": "puzzle2",
-      "title": "2‑Min Pattern Puzzle",
+      "id": "wordle2",
+      "title": "2‑Min Wordle Challenge",
       "duration": 120,
       "type": "cognitive",
-      "description": "A short puzzle to refresh attention (no video).",
-      "video": ""
+      "description": "A short short game of wordle to refresh attention (no video).",
+      "video": "https://www.nytimes.com/games/wordle/index.html"
+    },
+    {
+      "id": "connections2",
+      "title": "2‑Min Connections Challenge",
+      "duration": 120,
+      "type": "cognitive",
+      "description": "A quick connections brain teaser.",
+      "video": "https://www.nytimes.com/games/connections"
+    },
+    {
+      "id": "tightrope2",
+      "title": "Quick Trivia Challenge",
+      "duration": 120,
+      "type": "cognitive",
+      "description": "A short trivia game to stimulate your brain.",
+      "video": "https://www.britannica.com/quiz/tightrope"
+    },
+    {
+      "id": "sudoku5",
+      "title": "5‑Min Sudoku Puzzle",
+      "duration": 300,
+      "type": "cognitive",
+      "description": "A quick Sudoku puzzle to engage your mind (no video).",
+      "video": "https://sudoku.com/easy/"
+    },
+    {
+      "id": "calmColoring3",
+      "title": "3-Min Drawing Activity",
+      "duration": 180,
+      "type": "cognitive",
+      "description": "A relaxing digital drawing activity to refresh your mind.",
+      "video": "https://www.coloringonline.com/"
     }
   ],
   "social": [
@@ -77,6 +133,38 @@
       "type": "social",
       "description": "Send a quick message or emoji to someone — just a moment of connection.",
       "video": ""
+    },
+    {
+      "id": "gtky5",
+      "title": "5‑Min Get to Know You Scheduling",
+      "duration": 300,
+      "type": "social",
+      "description": "Take a moment to schedule a brief chat with a colleague or friend to strengthen your connection.",
+      "video": "https://directory.tamu.edu/"
+    },
+    {
+      "id": "calendar3",
+      "title": "3‑Min Calendar Review",
+      "duration": 180,
+      "type": "social",
+      "description": "View your calendar and identify/review your plans for the upcoming week.",
+      "video": "https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FChicago"
+    },
+    {
+      "id": "gratitude2",
+      "title": "2‑Min Gratitude Reflection",
+      "duration": 120,
+      "type": "social",
+      "description": "Reflect on and jot down things you are grateful for in your social and work life.",
+      "video": "https://onlinenotepad.org/notepad"
+    },
+    {
+      "id": "news3",
+      "title": "3‑Min News Check‑In",
+      "duration": 180,
+      "type": "social",
+      "description": "Scroll through the news and see what is going on today.",
+      "video": "https://www.cbsnews.com/"
     }
   ]
 }
