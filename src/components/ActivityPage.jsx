@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 export default function ActivityPage({ activity, onClose }) {
   const [secondsLeft, setSecondsLeft] = useState(activity.duration)
   const [running, setRunning] = useState(true)
+  const [completed, setCompleted] = useState(false) // track if already completed
   const timerRef = useRef(null)
 
   // Timer interval effect
@@ -15,27 +16,43 @@ export default function ActivityPage({ activity, onClose }) {
     return () => clearInterval(timerRef.current)
   }, [running, secondsLeft])
 
-  // When timer hits 0, record completion in localStorage
+  // When timer hits 0 or finish button pressed, record completion
+  const recordCompletion = () => {
+  if (completed) return;
+  setCompleted(true);
+
+  const hist = JSON.parse(localStorage.getItem('ab_history') || '[]');
+  hist.unshift({
+    id: activity.id,
+    category: activity.type,
+    title: activity.title,
+    timestamp: Date.now(),
+    duration: activity.duration
+  });
+  
+  // Keep only the latest 10
+  localStorage.setItem('ab_history', JSON.stringify(hist.slice(0, 10)));
+};
+
+
   useEffect(() => {
     if (secondsLeft <= 0) {
       clearInterval(timerRef.current)
       setRunning(false)
-
-      const hist = JSON.parse(localStorage.getItem('ab_history') || '[]')
-      hist.unshift({
-        id: activity.id,
-        timestamp: Date.now(),
-        action: 'complete',
-        duration: activity.duration
-      })
-      localStorage.setItem('ab_history', JSON.stringify(hist.slice(0, 200)))
+      recordCompletion()
     }
-  }, [secondsLeft, activity])
+  }, [secondsLeft])
 
   function formatTime(sec) {
     const m = Math.floor(sec / 60)
     const s = sec % 60
-    return `${m}:${String(s).padStart(2, '0')}`
+    return `${m}:${String(s).padStart(2,'0')}`
+  }
+
+  const handleFinish = () => {
+    setSecondsLeft(0)
+    recordCompletion()
+    onClose()
   }
 
   return (
@@ -77,7 +94,7 @@ export default function ActivityPage({ activity, onClose }) {
               <button className="btn" onClick={() => setRunning(r => !r)}>
                 {running ? 'Pause' : 'Resume'}
               </button>
-              <button className="btn-ghost" onClick={() => setSecondsLeft(0)}>
+              <button className="btn-ghost" onClick={handleFinish}>
                 Finish
               </button>
             </div>
