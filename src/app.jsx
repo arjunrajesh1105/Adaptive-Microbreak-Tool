@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import Dashboard from './components/Dashboard'
 import ActivityPage from './components/ActivityPage'
+import Schedule from './components/Schedule'
 import activities from './data/activities.json'
 
 export default function App() {
   const [selected, setSelected] = useState(null)
+  const [showSchedule, setShowSchedule] = useState(false)
 
-  // Track continuous work time (in seconds)
+  // Continuous work timer
   const [workSeconds, setWorkSeconds] = useState(() => {
     return Number(localStorage.getItem('work_seconds') || 0)
   })
 
-  // Request notification permission once
+  // Scheduled breaks
+  const [scheduledBreaks, setScheduledBreaks] = useState(() => {
+    return JSON.parse(localStorage.getItem('scheduled_breaks') || '[]')
+  })
+
+  // Keep track of which scheduled breaks already triggered
+  const [notifiedBreaks, setNotifiedBreaks] = useState([])
+
+  // Request notification permission
   useEffect(() => {
     if (Notification.permission !== 'granted') {
       Notification.requestPermission()
@@ -31,19 +41,49 @@ export default function App() {
     localStorage.setItem('work_seconds', workSeconds)
   }, [workSeconds])
 
-  // Break threshold in seconds (e.g., 1 min = 60)
-  const BREAK_THRESHOLD = 1 * 60
-
-  // Trigger notification when threshold is reached
+  // Continuous work timer notification (e.g., 45 min)
+  const BREAK_THRESHOLD = 0.5 * 60 // change to 45*60 for production
   useEffect(() => {
     if (workSeconds === BREAK_THRESHOLD && Notification.permission === 'granted') {
       new Notification('Time for a break!', {
-        body: "You've been working for a while. Take a quick activity to recharge.",
+        body: "You've been working for a while. Take a quick activity to recharge."
       })
     }
   }, [workSeconds])
 
-  // Reset timer when user starts an activity
+  // Scheduled breaks notifications
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date()
+      const nowStr = now.toTimeString().slice(0,5) // "HH:MM"
+
+      const storedBreaks = JSON.parse(localStorage.getItem('scheduled_breaks') || '[]')
+
+      storedBreaks.forEach(b => {
+        if (b.time === nowStr && !notifiedBreaks.includes(b.id)) {
+          if (Notification.permission === 'granted') {
+            new Notification('Scheduled Break', {
+              body: `Your ${b.duration} min break is starting now!`
+            })
+            setNotifiedBreaks(prev => [...prev, b.id])
+          }
+        }
+      })
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [notifiedBreaks])
+
+  // Listen for localStorage updates (e.g., user adds a new scheduled break)
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setScheduledBreaks(JSON.parse(localStorage.getItem('scheduled_breaks') || '[]'))
+    }
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
+  }, [])
+
+  // Activity selection resets the work timer
   const handleSelect = (activity) => {
     setSelected(activity)
     setWorkSeconds(0)
@@ -55,10 +95,20 @@ export default function App() {
 
   return (
     <div className="app-root">
-      {!selected ? (
-        <Dashboard activities={activities} onSelect={handleSelect} />
-      ) : (
+      {showSchedule && (
+        <Schedule onClose={() => setShowSchedule(false)} />
+      )}
+
+      {!showSchedule && selected && (
         <ActivityPage activity={selected} onClose={handleClose} />
+      )}
+
+      {!showSchedule && !selected && (
+        <Dashboard
+          activities={activities}
+          onSelect={handleSelect}
+          onOpenSchedule={() => setShowSchedule(true)}
+        />
       )}
     </div>
   )
